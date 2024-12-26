@@ -4,8 +4,10 @@ import Link from "next/link";
 
 const Page = async ({ params }) => {
   const { keyword } = await params;
+  const decodeKeyword = decodeURI(keyword);
+
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/anime?q=${keyword}`
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/anime?q=${decodeKeyword}`
   );
   const searchAnime = await response.json();
 
@@ -13,7 +15,7 @@ const Page = async ({ params }) => {
     <>
       {/* Anime Pencarian */}
       <section>
-        <Header title={`Pencarian untuk ${keyword}...`} />
+        <Header title={`Pencarian untuk ${decodeKeyword}...`} />
         <AnimeList api={searchAnime} />
       </section>
     </>

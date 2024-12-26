@@ -5,27 +5,18 @@ import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 
 const InputSearch = () => {
-  const [inputValue, setInputValue] = useState("");
   const searchRef = useRef();
   const router = useRouter();
 
   const handleSearch = (event) => {
+    const keyword = searchRef.current.value;
+
+    if (!keyword) return;
+
     if (event.key === "Enter" || event.type === "click") {
       event.preventDefault();
-      const keyword = searchRef.current.value;
-      if (inputValue.trim() === "") {
-        // Jika kosong, fokus kembali ke input
-        if (searchRef.current) {
-          searchRef.current.focus();
-        }
-        return; // Tidak melanjutkan ke halaman berikutnya
-      }
       router.push(`/search/${keyword}`);
     }
-  };
-
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
   };
 
   return (
@@ -33,10 +24,8 @@ const InputSearch = () => {
       <input
         placeholder="Cari Anime"
         className="w-full p-2 rounded"
-        value={inputValue}
         ref={searchRef}
         onKeyDown={handleSearch}
-        onChange={handleChange}
       />
       <button className="absolute top-2 end-2" onClick={handleSearch}>
         <MagnifyingGlass size={24} color="#0a0a0a" />
