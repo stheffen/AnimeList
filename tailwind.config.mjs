@@ -14,10 +14,10 @@ export default {
     },
     colors: {
       color: {
-        primary: "#eeeeee",
-        accent: "#ffc639",
-        secondary: "#393e46",
-        dark: "#222831",
+        primary: "#ffffff",
+        accent: "#d3edfc",
+        secondary: "#3481fc",
+        dark: "#000000",
       },
     },
   },

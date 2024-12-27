@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 
 const InputSearch = () => {
+  const [activeButtonIndex, setActiveButtonIndex] = useState(0);
   const searchRef = useRef();
   const router = useRouter();
 
@@ -23,12 +24,12 @@ const InputSearch = () => {
     <div className="relative">
       <input
         placeholder="Cari Anime"
-        className="w-full p-2 rounded"
+        className="w-full p-2 rounded focus:outline-color-accent text-color-dark"
         ref={searchRef}
         onKeyDown={handleSearch}
       />
       <button className="absolute top-2 end-2" onClick={handleSearch}>
-        <MagnifyingGlass size={24} color="#0a0a0a" />
+        <MagnifyingGlass size={24} color="#000000" />
       </button>
     </div>
   );
