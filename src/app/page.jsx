@@ -1,10 +1,14 @@
 import AnimeList from "@/components/AnimeList";
 import { Header } from "@/components/AnimeList/Header";
-import { getAnimeResponse } from "./libs/apis";
+import { getAnimeResponse, getNestedAnimeResponse } from "@/libs/apis";
 
 const Page = async () => {
   const topAnime = await getAnimeResponse("top/anime", "limit=8");
-
+  let recommendedAnime = await getNestedAnimeResponse(
+    "recommendations/anime",
+    "entry"
+  );
+  recommendedAnime = { data: recommendedAnime.slice(0, 8) };
   return (
     <>
       {/* Anime Terpopuler */}
@@ -16,8 +20,12 @@ const Page = async () => {
         />
         <AnimeList api={topAnime} />
       </section>
+      <section>
+        <Header title="Rekomendasi" />
+        <AnimeList api={recommendedAnime} />
+      </section>
     </>
   );
 };
-
+// ada tugas di menit 13.17 sesi 6 nextjs afrizal
 export default Page;
