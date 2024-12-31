@@ -1,6 +1,11 @@
 import AnimeList from "@/components/AnimeList";
 import { Header } from "@/components/AnimeList/Header";
-import { getAnimeResponse, getNestedAnimeResponse } from "@/libs/apis";
+import {
+  getAnimeResponse,
+  getNestedAnimeResponse,
+  reproduce,
+  shuffleArray,
+} from "@/libs/apis";
 
 const Page = async () => {
   const topAnime = await getAnimeResponse("top/anime", "limit=8");
@@ -8,7 +13,11 @@ const Page = async () => {
     "recommendations/anime",
     "entry"
   );
-  recommendedAnime = { data: recommendedAnime.slice(0, 8) };
+  // menggunakan 2 cara berbeda untuk melakukan random
+  // CARA 1
+  // recommendedAnime = { data: shuffleArray(recommendedAnime).slice(0, 8) };
+  // CARA 2
+  recommendedAnime = reproduce(recommendedAnime, 4);
   return (
     <>
       {/* Anime Terpopuler */}
