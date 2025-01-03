@@ -5,7 +5,7 @@ import {
   getNestedAnimeResponse,
   reproduce,
   shuffleArray,
-} from "@/libs/apis";
+} from "@/libs/api-libs";
 
 const Page = async () => {
   const topAnime = await getAnimeResponse("top/anime", "limit=8");
