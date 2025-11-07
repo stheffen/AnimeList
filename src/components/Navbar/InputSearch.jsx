@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 
 const InputSearch = () => {
-  const [activeButtonIndex, setActiveButtonIndex] = useState(0);
   const searchRef = useRef();
   const router = useRouter();
 

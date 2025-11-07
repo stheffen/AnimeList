@@ -1,7 +1,6 @@
 import { getAnimeResponse } from "@/libs/api-libs";
 import React from "react";
-import Image from "next/image";
-import VideoPlayer from "@/components/Utilities/VideoPlayer";
+import ImageSection from "@/components/Utilities/ImageSection";
 
 const Page = async ({ params }) => {
   const { id } = await params;
@@ -31,18 +30,12 @@ const Page = async ({ params }) => {
           <p>{anime.data.episodes}</p>
         </div>
       </div>
-      <div className="pt-4 px-4 flex sm:flex-nowrap flex-wrap gap-2 text-color-primary">
-        <Image
+      <div className="flex pt-4 px-4 gap-4 text-color-primary">
+        <ImageSection
           src={anime.data.images.webp.image_url}
           alt={anime.data.images.jpg.image_url}
-          width={250}
-          height={250}
-          className="w-full rounded object-cover"
         />
         <p className="text-justify text-xl">{anime.data.synopsis}</p>
-      </div>
-      <div>
-        <VideoPlayer youtubeId={anime.data.trailer.youtube_id} />
       </div>
     </div>
   );

@@ -1,23 +1,22 @@
 import AnimeList from "@/components/AnimeList";
 import { Header } from "@/components/AnimeList/Header";
+import Pagination from "@/components/Utilities/Pagination";
 import {
   getAnimeResponse,
   getNestedAnimeResponse,
   reproduce,
+  reproduces,
   shuffleArray,
 } from "@/libs/api-libs";
 
 const Page = async () => {
-  const topAnime = await getAnimeResponse("top/anime", "limit=8");
+  const topAnime = await getAnimeResponse("top/anime", "limit=5");
+
   let recommendedAnime = await getNestedAnimeResponse(
     "recommendations/anime",
     "entry"
   );
-  // menggunakan 2 cara berbeda untuk melakukan random
-  // CARA 1
-  // recommendedAnime = { data: shuffleArray(recommendedAnime).slice(0, 8) };
-  // CARA 2
-  recommendedAnime = reproduce(recommendedAnime, 4);
+  recommendedAnime = reproduces(recommendedAnime, 20);
   return (
     <>
       {/* Anime Terpopuler */}
@@ -36,5 +35,5 @@ const Page = async () => {
     </>
   );
 };
-// ada tugas di menit 13.17 sesi 6 nextjs afrizal
+
 export default Page;

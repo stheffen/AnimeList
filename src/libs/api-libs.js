@@ -8,20 +8,23 @@ export const getAnimeResponse = async (resource, query) => {
 
 export const getNestedAnimeResponse = async (resource, objectProperty) => {
   const response = await getAnimeResponse(resource);
-  return response.data.flatMap((item) => item[objectProperty]);
+  return response.data?.flatMap((item) => item[objectProperty]);
 };
 
-// untuk melakukan random ada 2 fungsi penggunaan
-export const shuffleArray = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-  }
-  return array;
-};
-
+// random the recomenndation anime
 export const reproduce = (data, gap) => {
   const first = ~~(Math.random() * (data.length - gap) + 1);
+  const last = first + gap;
+
+  const response = {
+    data: data.slice(first, last),
+  };
+  return response;
+};
+
+//not random
+export const reproduces = (data, gap) => {
+  const first = ~~(data.length - gap);
   const last = first + gap;
 
   const response = {
